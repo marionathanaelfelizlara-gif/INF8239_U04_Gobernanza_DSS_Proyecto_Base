@@ -1,9 +1,9 @@
-purpose: REPLACE
-assisted_decision: REPLACE
-users: REPLACE
-affected_population: REPLACE
-owner: REPLACE
-non_predictive_alternative: REPLACE
-out_of_scope_use: REPLACE
-withdrawal_condition: REPLACE
-appeal_mechanism: REPLACE
+purpose: Priorizar casos territoriales sinteticos para revision humana, nunca para intervencion automatica ni para decidir por si solo sobre una persona o zona.
+assisted_decision: Que casos del registro territorial deberia revisar primero un analista humano, segun un nivel de riesgo estimado a partir de incidentes previos, score de infraestructura y exposicion.
+users: Analistas del equipo de gestion de riesgo territorial y el Product Owner, que son quienes consultan el tablero y documentan la decision final.
+affected_population: Casos registrados en las cuatro zonas sinteticas (Sur, Este, Oeste, Norte). El atributo protected_group es una categoria abstracta de auditoria (G1/G2) incluida solo para medir equidad, no representa una identidad real.
+owner: Institutional Owner, quien es Accountable en la actividad de respuesta a incidentes segun el RACI del proyecto.
+non_predictive_alternative: Revision manual rotativa por zona, ordenando los casos solo por antiguedad y numero de incidentes previos reportados, sin usar ningun modelo predictivo.
+out_of_scope_use: Intervencion automatica sobre un caso, decisiones de elegibilidad, y declaracion de emergencia -- las tres quedan explicitamente prohibidas en configs/governance.yml.
+withdrawal_condition: Retirar el sistema si una auditoria de equidad (LAB12) muestra una brecha de recall o de tasa de falsos positivos por encima de los umbrales de configs/governance.yml, o si el recall global cae por debajo del minimo documentado.
+appeal_mechanism: Cualquier caso puede solicitar revision manual directa por el Institutional Owner, independiente de la recomendacion generada por el sistema.

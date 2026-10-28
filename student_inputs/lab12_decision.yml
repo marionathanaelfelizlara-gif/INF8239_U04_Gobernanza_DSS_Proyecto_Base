@@ -1,6 +1,6 @@
-priority_harm: REPLACE
-primary_metric: REPLACE
-tolerance: REPLACE
-evidence: REPLACE
-limitation: REPLACE
-recommendation: REPLACE
+priority_harm: Que un caso de protected_group=G1 reciba sistematicamente menor prioridad de revision que uno equivalente de G2, o viceversa, por una brecha de recall o FPR no corregida entre grupos.
+primary_metric: recall_gap, porque perder un caso positivo (falso negativo) es el dano mas grave segun la teoria del manual, no solo la tasa de seleccion.
+tolerance: 0.16, el mismo umbral max_recall_gap/max_fpr_gap ya documentado en configs/governance.yml.
+evidence: recall_gap logistic=0.138 (dentro de tolerancia) vs tree=0.181 (fuera); fpr_gap logistic=0.125 vs tree=0.169 (fuera); tamano de ambos modelos trivial frente al limite de 1024 KB (3.56 KB y 7.87 KB).
+limitation: Falta verificar el recall global de cada modelo contra min_recall=0.68 y el tamano de las celdas interseccionales (protected_group x age_band) antes de una conclusion completa; el dataset es sintetico y la brecha de tasa base ya esta presente en los datos crudos, no solo introducida por el modelo.
+recommendation: Usar el modelo logistic, no tree -- es el unico de los dos que cumple ambas puertas de equidad de governance.yml (recall_gap y fpr_gap por debajo de 0.16), aunque con margen estrecho que deberia monitorearse en produccion.

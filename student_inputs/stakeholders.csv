@@ -1,5 +1,5 @@
 stakeholder,benefit,harm,power,participation
-Affected person,REPLACE,REPLACE,low,REPLACE
-Operator,REPLACE,REPLACE,medium,REPLACE
-Institutional owner,REPLACE,REPLACE,high,REPLACE
-Data team,REPLACE,REPLACE,medium,REPLACE
+Affected person,Revision priorizada y mas rapida de su caso,Ser mal clasificado y recibir menor prioridad de forma injusta; especialmente si pertenece al grupo con mayor tasa base de casos positivos en los datos historicos,low,Puede apelar la decision ante el Institutional Owner; no participa en el diseno del modelo
+Operator,Herramienta que ordena casos por prioridad y reduce carga manual de triage,Exceso de confianza en la recomendacion del tablero sin tiempo real para revisar cada caso marcado REVIEW,medium,Usa el tablero Streamlit a diario y debe registrar la decision humana final para cada caso
+Institutional owner,Trazabilidad y evidencia documentada de cada decision de priorizacion,Responsabilidad institucional y reputacional si el sistema prioriza de forma injusta o se usa fuera de su proposito declarado,high,"Aprueba el despliegue, revisa el Model Card y el RACI, y es Accountable final segun governance.yml"
+Data team,Caso de uso claro para mejorar la calidad y el contrato de los datos,Presion para mejorar metricas de desempeno sin tiempo suficiente para auditar equidad entre grupos,medium,"Mantiene el dataset, documenta exclusiones de columnas y el corte temporal de entrenamiento"
