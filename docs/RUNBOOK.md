@@ -1,8 +1,8 @@
 # Incident Runbook — complete after LAB13
 
-1. Detection and classification: REPLACE
-2. Containment authority: REPLACE
-3. Evidence preservation: REPLACE
-4. Internal and affected-party communication: REPLACE
-5. Rollback or safe baseline: REPLACE
-6. Postmortem, owner and due date: REPLACE
+1. Detection and classification: Se detecta un incidente cuando `lab13_governance.py` devuelve `status != GO` (REVIEW), o cuando un monitoreo periódico post-despliegue mide `recall_gap`/`fpr_gap` por encima de 0.16 o recall global por debajo de 0.68 (umbrales de `configs/governance.yml`). Se clasifica según qué puerta falló: equidad (recall_gap/fpr_gap), desempeño (recall/accuracy) o costo (latency/model_size).
+2. Containment authority: El ML Engineer tiene autoridad para contener de inmediato revirtiendo al último modelo validado (rollback) sin esperar aprobación previa, dado el riesgo de daño continuado; el Institutional Owner (Accountable) se notifica en el mismo momento y confirma o ajusta la contención en las horas siguientes.
+3. Evidence preservation: Conservar sin modificar el `deployment_decision.json` y `fairness_by_group.csv` del momento del incidente, más la versión exacta del modelo (`models/*.joblib`) que generó la alerta — nunca sobrescribir estos archivos hasta cerrar el postmortem.
+4. Internal and affected-party communication: Notificación interna inmediata (Institutional Owner, Data Scientist) con la brecha medida y el modelo afectado. Comunicación a las partes afectadas limitada a informar que sus casos quedan sujetos a revisión manual adicional durante la ventana del incidente, sin exponer información que identifique individualmente a ningún caso, recordando el mecanismo de apelación de `lab11_impact.yml`.
+5. Rollback or safe baseline: Revertir al modelo `logistic` ya validado en LAB12/LAB13 (el único que pasa ambas puertas de equidad) como baseline seguro; si también falla alguna puerta, suspender el DSS y usar la alternativa no predictiva de `lab11_impact.yml` (revisión manual rotativa por zona).
+6. Postmortem, owner and due date: El Institutional Owner cierra el postmortem (plantilla en `reports/lab13/INCIDENT_POSTMORTEM.md`) dentro de 5 días hábiles, documentando causa raíz, acciones correctivas con responsables y fechas, y si el runbook necesita actualizarse.
